@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shema Ndikumana</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');    
+    </style>
+</head>
+<body style="margin:0; padding:0;">
+    <div id="home-body">
+    <div id="navbar-placeholder"></div>
+    <header id="home-header">
+        <div 
+        style=
+        "display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center;">
+        <p style="align-self: flex-start;">Hello, I'm</p>
+        <h1>Shema Ndikumana.</h1>
+         <p style="align-self: flex-end;">A Multimedia Designer bridging functionality and aesthetic.</p>
+         <button class="header-btn"><a href="#home-section">Explore!</a></button>
+         </div>
+    </header>
+    <section id="home-section">
+    <div class="about-home">
+        <p>
+            Award-winning multimedia designer specializing in visual storytelling across photography, video, and graphic design. I create cohesive, purpose-driven visual systems for brands and community initiatives—from city campaigns to public art installations. Proficient in Adobe Creative Suite and Figma. <br> Let’s tell your story with <b>clarity and impact.</b>
+        </p>
+
+        <button class="header-btn"><a href="about.html">Read More</a></button>
+    </div>
+    <div id="pages">
+        <div class="home-page-title" data-bg="photos/NYC-8.jpg">
+        <div class="bg-overlay" style="background-position: 0px -610px;"></div>
+        <div class="content">
+            <p class="pages-txt">
+                <a href="photos.html">Photos</a>
+            </p>
+        </div>
+    </div>
+    <div class="home-page-title" data-bg="photos/Remington-1.jpg">
+        <div class="bg-overlay" style="background-position: 0px -1700px;"></div>
+        <div class="content">
+            <p class="pages-txt">
+                <a href="videos.html">Videos</a>
+            </p>
+        </div>
+    </div>
+    <div class="home-page-title" data-bg="photos/hs-7.jpg">
+        <div class="bg-overlay"  style="background-position: 0px -900px;"></div>
+        <div class="content">
+            <p class="pages-txt">
+                <a href="graphics.html">Graphics</a>
+            </p>
+        </div>
+    </div>
+    <div class="home-page-title" data-bg="about/shema_headshot.jpg">
+        <div class="bg-overlay" style="background-position: 0px -1070px;"></div>
+        <div class="content">
+            <p class="pages-txt">
+                <a href="about.html">About</a>
+            </p>
+        </div>
+    </div>
+    </div>
+    </section> 
+    <footer id="footer-placeholder"></footer>
+    </div>
+
+<script>
+    (function() {
+        'use strict';
+
+        // Duration of the scroll animation (higher = slower)
+        const SCROLL_DURATION = 800; // 2 seconds - adjust to make slower/faster
+
+        // Ease-out function - starts fast, ends slow
+        function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
+        }
+
+        // Custom slow scroll function with ease-out
+        function slowScrollTo(targetY, duration) {
+            const startY = window.pageYOffset || document.documentElement.scrollTop;
+            const distance = targetY - startY;
+            
+            if (Math.abs(distance) < 2) {
+                window.scrollTo(0, targetY);
+                return;
+            }
+
+            const startTime = performance.now();
+
+            function animateScroll(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Apply ease-out curve
+                const easedProgress = easeOutCubic(progress);
+                const currentY = startY + (distance * easedProgress);
+
+                window.scrollTo(0, currentY);
+
+                if (progress < 1) {
+                    requestAnimationFrame(animateScroll);
+                } else {
+                    window.scrollTo(0, targetY);
+                }
+            }
+
+            requestAnimationFrame(animateScroll);
+        }
+
+        // Handle click on any anchor tag that has href starting with '#'
+        function handleLinkClick(e) {
+            const link = e.currentTarget;
+            const href = link.getAttribute('href');
+            
+            // Only process internal hash links
+            if (!href || !href.startsWith('#')) return;
+            
+            e.preventDefault();
+            
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                const targetRect = targetElement.getBoundingClientRect();
+                const absoluteTop = window.pageYOffset + targetRect.top;
+                slowScrollTo(absoluteTop, SCROLL_DURATION);
+            }
+        }
+
+        // Find ALL anchor tags with href starting with '#' and attach click handler
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all anchor tags on the page
+            const allLinks = document.querySelectorAll('a[href^="#"]');
+            
+            allLinks.forEach(function(link) {
+                link.addEventListener('click', handleLinkClick);
+            });
+            
+            console.log('✅ Slow scroll enabled - Duration: ' + SCROLL_DURATION + 'ms');
+            console.log('✅ Found ' + allLinks.length + ' internal links');
+        });
+
+    })();
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const titles = document.querySelectorAll('.home-page-title');
+    
+    titles.forEach(title => {
+        // Set the background image
+        const bg = title.dataset.bg;
+        const overlay = title.querySelector('.bg-overlay');
+        if (bg && overlay) {
+            overlay.style.backgroundImage = `url('${bg}')`;
+        }
+        
+        // Add hover event listeners
+        title.addEventListener('mouseenter', function() {
+            this.classList.add('hover');
+        });
+        
+        title.addEventListener('mouseleave', function() {
+            this.classList.remove('hover');
+        });
+    });
+});
+    </script>
+    </body>
+</html>

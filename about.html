@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');    
+    </style>
+    <title>About</title>
+</head>
+<body style="width: 100% !important; overflow-x: hidden;">
+     <div id="navbar-placeholder"></div>
+ <section class="bio-section">
+    <div class="pfp-box">
+        <div class="headshot-box"><img src="about/shema_headshot.jpg" alt="headshot"></div>
+        <div class="pfp-txt">
+            <p class="pfp-name">Shema Ndikumana</p>
+            <p class="pfp-pronouns">He/Him</p>
+        </div>
+    </div>
+    <div class="info-box">
+        <div class="bio-txt">
+An award-winning multimedia designer with over three years of versatile experience across education, retail, startups, and local government. I've contributed to projects for Baltimore City, the University of Baltimore, Salem Massachusetts, and emerging food businesses and startups in the community. 
+<br>
+<br>Rooted in a multicultural background, I approach each project with a broad global perspective, valuing clean design and seeking to elevate the stories of the communities I work with. Whether developing visual identities, capturing compelling photography and videos, or building user-friendly websites with HTML, CSS, and JavaScript, my aim is to craft work that is meaningful and human-centered. 
+<br>
+<br>Fueled by a genuine passion for empowering others and celebrating everyday moments, I believe in creating with clarity, heart, and purpose. Let’s work together to turn your vision into something impactful and authentic.
+</div>
+        <div class="work-box">
+            <div class="work">
+                <p class="work-title">Lorem ipsum dolor sit amet</p>
+                <p class="work-info">In in malesuada dolor. Aliquam sed pulvinar enim. Sed tincidunt fermentum efficitur. In vel tempus sapien, eget commodo odio. Suspendisse vestibulum in velit vitae scelerisque. </p>
+            </div>
+            <div class="work">
+                <p class="work-title">Lorem ipsum dolor sit amet</p>
+                <p class="work-info">In in malesuada dolor. Aliquam sed pulvinar enim. Sed tincidunt fermentum efficitur. In vel tempus sapien, eget commodo odio. Suspendisse vestibulum in velit vitae scelerisque. </p>
+            </div>
+            <div class="work">
+                <p class="work-title">Lorem ipsum dolor sit amet</p>
+                <p class="work-info">In in malesuada dolor. Aliquam sed pulvinar enim. Sed tincidunt fermentum efficitur. In vel tempus sapien, eget commodo odio. Suspendisse vestibulum in velit vitae scelerisque. </p>
+            </div>
+            <div class="work">
+                <p class="work-title">Lorem ipsum dolor sit amet</p>
+                <p class="work-info">In in malesuada dolor. Aliquam sed pulvinar enim. Sed tincidunt fermentum efficitur. In vel tempus sapien, eget commodo odio. Suspendisse vestibulum in velit vitae scelerisque. </p>
+            </div>
+        </div>
+    </div>
+ </section>
+ <section class="skills-section">
+    <div class="skill" data-skill="Photos">
+        <p class="skill-type"><a href="photos.html">Photos</a></p>
+        <video loop="true" autoplay="autoplay" controls muted
+        src="about/photos-loop.mp4" style="width: 600%; height: auto;"></video>
+    </div>
+    <div class="skill" data-skill="Videos">
+        <p class="skill-type"><a href="videos.html">Videos</a></p>
+        <video loop="true" autoplay="autoplay" controls muted
+        src="about/video-loop.mp4"></video>
+    </div>
+     <div class="skill" data-skill="Graphics">
+        <p class="skill-type"><a href="graphics.html">Graphics</a></p>
+        <video loop="true" autoplay="autoplay" controls muted
+        src="about/video-loop.mp4"></video>
+    </div>
+    <div class="skill" data-skill="UI">
+        <p class="skill-type">UI/UX</p> 
+        <img src="photos/InnerHarbor-21.jpg" alt=""></div>
+    <div class="tools">
+        <div class="tool-txt">
+            <p id="tool-title-1">Adobe</p>
+            <p id="tool-info-1">In in malesuada dolor. Aliquam sed pulvinar enim. Sed tincidunt fermentum efficitur. In vel tempus sapien, eget commodo odio. Suspendisse vestibulum in velit vitae scelerisque. </p>
+        </div>
+        <div class="tool-txt">
+            <p id="tool-title-2">Adobe</p>
+            <p id="tool-info-2">In in malesuada dolor. Aliquam sed pulvinar enim. Sed tincidunt fermentum efficitur. In vel tempus sapien, eget commodo odio. Suspendisse vestibulum in velit vitae scelerisque. </p>
+        </div>
+    </div>
+ </section>
+<footer id="footer-placeholder"></footer>
+ <script>
+
+
+    
+
+    const toolTitle1 = document.getElementById('tool-title-1');
+    const toolTitle2 = document.getElementById('tool-title-2');
+    const toolInfo1 = document.getElementById('tool-info-1');
+    const toolInfo2 = document.getElementById('tool-info-2');
+    const skillBox = document.querySelectorAll('.skill');
+
+    const toolElements = [toolTitle1, toolTitle2, toolInfo1, toolInfo2];
+
+    setTimeout(() => {
+        toolTitle1.classList.add('visible');
+        toolInfo1.classList.add('visible');
+        toolTitle2.classList.add('visible');
+        toolInfo2.classList.add('visible');
+    }, 50);
+
+    const toolData = {
+        Photos:{
+            title1: "Adobe Lightroom Classic",
+            info1: "I work with <span style = 'font-weight: 900;'>RAW images</span>, preserving all metadata while adjusting exposure via <span style = 'font-weight: 900;'>historam analysis</span> and refining colors with <span style = 'font-weight: 900;'>HSL grading.</span> Using <span style = 'font-weight: 900;'>custom masks,</span> I make targeted edits, remove distractions, reframe compositions, and retouch details to deliver a polished result for digital or print.",
+
+            title2: "Adobe Photoshop",
+            info2: "I use <span style = 'font-weight: 900;'>curves</span> and <span style = 'font-weight: 900;'>color balances</span> for tonal control, <span style = 'font-weight: 900;'>rasterize vectors,</span> and work with <span style = 'font-weight: 900;'>clipping & adjustment masks</span> for precision. I remove blemishes, clone, blur, and build bitmaps and <span style = 'font-weight: 900;'>composite imagery</span> to transform straightforward photos into compelling visual journeys."
+        },
+
+        Videos:{
+            title1:"Adobe Premiere Pro",
+            info1: "In in malesuada dolor. Aliquam sed pulvinar enim. Sed tincidunt fermentum efficitur. In vel tempus sapien, eget commodo odio. Suspendisse vestibulum in velit vitae scelerisque.",
+
+            title2: "Adobe After Effects",
+            info2: "In in malesuada dolor. Aliquam sed pulvinar enim. Sed tincidunt fermentum efficitur. In vel tempus sapien, eget commodo odio. Suspendisse vestibulum in velit vitae scelerisque.",
+        },
+
+        Graphics:{
+            title1:"Adobe Illustrator",
+            info1:"In in malesuada dolor. Aliquam sed pulvinar enim. Sed tincidunt fermentum efficitur. In vel tempus sapien, eget commodo odio. Suspendisse vestibulum in velit vitae scelerisque.",
+
+            title2: "Adobe InDesign",
+            info2: "In in malesuada dolor. Aliquam sed pulvinar enim. Sed tincidunt fermentum efficitur. In vel tempus sapien, eget commodo odio. Suspendisse vestibulum in velit vitae scelerisque.",
+        },
+
+        UI:{
+            title1: "CSS, HTML & Javascript",
+            info1: "In in malesuada dolor. Aliquam sed pulvinar enim. Sed tincidunt fermentum efficitur. In vel tempus sapien, eget commodo odio. Suspendisse vestibulum in velit vitae scelerisque.",
+
+            title2:"Figma",
+            info2: "In in malesuada dolor. Aliquam sed pulvinar enim. Sed tincidunt fermentum efficitur. In vel tempus sapien, eget commodo odio. Suspendisse vestibulum in velit vitae scelerisque."
+        }
+
+    };
+
+// 3. Update function
+function updateTools(skillKey) {
+    const data = toolData[skillKey];
+    if (!data) return;
+
+    toolElements.forEach(el => {
+        el.classList.remove('visible');
+    });
+
+    setTimeout(() => {
+        toolTitle1.textContent = data.title1;
+        toolInfo1.innerHTML = data.info1;
+        toolTitle2.textContent = data.title2;
+        toolInfo2.innerHTML = data.info2;
+
+        // 3. ADD visible class back (fade in from right)
+        setTimeout(() => {
+            toolElements.forEach(el => {
+                el.classList.add('visible');
+            });
+        }, 30); // Small delay for the text to update
+    }, 100); // Wait for fade out animation (matches CSS transition)
+}
+
+// 4. Event listeners for hover
+skillBox.forEach(skill => {
+    skill.addEventListener('mouseenter', function(e) {
+        const skillKey = this.dataset.skill;
+        if (skillKey && toolData[skillKey]) {
+            updateTools(skillKey);
+        }
+    });
+});
+
+// 5. Video autoplay on hover
+document.querySelectorAll('.skill video').forEach(video => {
+    const parent = video.closest('.skill');
+    if (parent) {
+        parent.addEventListener('mouseenter', function() {
+            const vid = this.querySelector('video');
+            if (vid) {
+                vid.play().catch(() => {});
+            }
+        });
+        parent.addEventListener('mouseleave', function() {
+            const vid = this.querySelector('video');
+            if (vid) {
+                vid.pause();
+                vid.currentTime = 0;
+            }
+        });
+    }
+});
+
+// 6. Set default (Photos)
+updateTools('Photos'); 
+
+ </script>
+</body>
+</html>
