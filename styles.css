@@ -219,7 +219,7 @@ body {
     top: 0;
     margin-bottom: 0;
     z-index: 0;
-    background-image: url("header/bg-header.png");
+    background-image: url("header/bg-header.webp");
     background-color: rgba(39, 32, 24, 0.4);
     background-blend-mode: multiply;
     background-size: cover;
@@ -784,7 +784,7 @@ p {
     top: 0;
     position: relative;
     z-index: 0;
-    background-image: url("photos/Mt\ Vernon-11.jpg");
+    background-image: url("photos/Mt\ Vernon-11.webp");
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-color: transparent !important;
