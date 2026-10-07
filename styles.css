@@ -377,11 +377,19 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
+
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    image-rendering: auto; /* default, but explicit */
+
     clip-path: inset(0 100% 0 0); /* Start hidden (0% visible) */
     transition: clip-path 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: 0;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* no change needed if you exported at 2x — cover handles it */
 }
 
 .home-page-title:hover .bg-overlay {
@@ -550,26 +558,27 @@ p {
 
 .info-box{
     height: 100%;
-    width: 60%;
+    width: 800px;
     display: flex;
     flex-direction: column;
-    margin-left:50%;
+    margin-left:30%;
+    padding: 10px 60px;
 }
 
 .bio-txt{
-    color: var(--red) !important;
+    color: var(--brown) !important;
     background-color: var(--dark-beige);
 
     width: 100%;
     height: 100%;
-    padding: 120px 60px;
     align-items: center;
     align-self: flex-end;
     justify-content: center;
+    margin: 60px 0;
 
     line-height: 1.4;
     font-family: var(--body);
-    font-size: 22px !important;
+    font-size: 28px !important;
     text-align: right !important;
     
 }
@@ -577,20 +586,27 @@ p {
 .work-box{
 
     width: 100%;
-    height: 100vh;
-    padding: 50px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+
     align-items: center;
     justify-content: center;
 
-    line-height: 1.4;
     font-family: var(--body);
-    font-size: 22px !important;
     text-align: right !important;
 }
 
 .work{
-    height: 200px;
+    height: 500px;
     width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+
 }
 
 .work-title{
@@ -603,12 +619,34 @@ p {
     text-align: right !important;
 }
 
-.work-info{
+.work-location{
+    color: var(--brown);
+    line-height: 1.2;
+    font-size: 16px !important;
+    font-family: var(--body);
+    font-weight: 500;
+    text-align: right !important;
+}
+
+.work-date{
+    color: var(--brown);
+    line-height: 1.2;
+    font-size: 16px;
+    font-family: var(--body);
+    font-weight: 500;
+    text-align: right !important;
+}
+
+
+.work-info ul li {
     color: var(--red);
-    line-height: 1.4;
+    line-height: 1.1;
+    font-size: 15px;
     font-family: var(--body);
     font-size: 22px !important;
     text-align: right !important;
+    padding: 5px 0;
+    list-style-type: none;
 }
 
 .skills-section{
@@ -1586,7 +1624,7 @@ p {
     padding: 10px;
 }
 
-.long-carousel .vid-long {
+.long-carousel .vid-long{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1597,13 +1635,60 @@ p {
     padding: 5px;
 }
 
-.long-carousel .vid-long video {
+.long-carousel .vid-long video{
     width: 100%;
     max-width: 400px;
     height: auto;
     aspect-ratio: 16/9;
     object-fit: cover;
     border-radius: 10px;
+}
+
+.long-carousel .vid-long .vid-link {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16/9;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.long-carousel .vid-long .vid-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.long-carousel .vid-long .vid-link:hover img {
+    transform: scale(1.05);
+}
+
+.long-carousel .vid-long .play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.25);
+    transition: background 0.2s ease;
+}
+
+.long-carousel .vid-long .vid-link:hover .play-overlay {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.long-carousel .vid-long .play-overlay svg {
+    width: 64px;
+    height: 64px;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+    transition: transform 0.2s ease;
+}
+
+.long-carousel .vid-long .vid-link:hover .play-overlay svg {
+    transform: scale(1.1);
 }
 
 .long-carousel .vid-txt {
