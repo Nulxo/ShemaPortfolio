@@ -3,27 +3,19 @@ function loadNavbar() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('navbar-placeholder').innerHTML = data;
-            
-            // Initialize navbar functionality AFTER it's loaded
-            initNavbar(); // <-- This now includes title update
+            initNavbar();
         })
         .catch(error => console.error('Navbar error:', error));
 }
 
-// Initialize navbar toggle functionality AND update page title
 function initNavbar() {
     const navBtn = document.querySelector('.nav-btn');
     const navMenu = document.querySelector('.nav-menu');
-    
-    console.log('Navbar initialized - button found:', navBtn);
-    console.log('Navbar initialized - menu found:', navMenu);
-    
-    // *** ADD PAGE TITLE UPDATE HERE ***
+
+    // --- Page title ---
     function getPageTitle() {
         const path = window.location.pathname;
-        console.log('Current path:', path);
         const page = path.split('/').pop().split('.').slice(0, -1).join('.') || 'index';
-        
         const titleMap = {
             'index': 'Home',
             'photos': 'Photos',
@@ -31,43 +23,79 @@ function initNavbar() {
             'graphics': 'Graphics',
             'about': 'About'
         };
-        
         return titleMap[page] || page.charAt(0).toUpperCase() + page.slice(1);
     }
 
     const titleElement = document.getElementById('pageTitle');
-    console.log('Title element found:', titleElement);
     if (titleElement) {
         const title = getPageTitle();
         titleElement.innerHTML = ` ❘ ${title}`;
-        console.log('Title updated to:', titleElement.innerHTML);
     }
-    
+
+    // --- Menu toggle ---
     if (navBtn && navMenu) {
-        // Toggle menu on button click
-        navBtn.addEventListener('click', function(e) {
+        navBtn.addEventListener('click', function (e) {
             e.stopPropagation();
             navMenu.classList.toggle('open');
-            console.log('Menu toggled, open?', navMenu.classList.contains('open'));
         });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
+
+        document.addEventListener('click', function (e) {
             if (!navMenu.contains(e.target) && !navBtn.contains(e.target)) {
                 navMenu.classList.remove('open');
             }
         });
-        
-        // Close menu when clicking a link
+
         navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function () {
                 navMenu.classList.remove('open');
             });
         });
     } else {
         console.error('Navbar elements not found after load!');
     }
+
+    // --- Scroll behavior ---
+    initScrollHide();
 }
 
-// Load navbar when DOM is ready
+function initScrollHide() {
+    const nav = document.querySelector('.main-nav');
+    if (!nav) return;
+
+    // Measure the hero element, or fall back to viewport height
+    const hero = document.querySelector('.hero');
+    const heroHeight = hero ? hero.offsetHeight : window.innerHeight;
+
+    let lastY = window.scrollY;
+    const threshold = 10; // ignore tiny scroll jitters
+
+    window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+
+        // Toggle solid background once we're past the hero
+        if (y > heroHeight - 100) {
+            nav.classList.add('nav-scrolled');
+        } else {
+            nav.classList.remove('nav-scrolled');
+        }
+
+        // Always show near the top of the page
+        if (y <= 50) {
+            nav.classList.remove('nav-hidden');
+            lastY = y;
+            return;
+        }
+
+        // Scrolling down → hide. Scrolling up → show.
+        if (Math.abs(y - lastY) > threshold) {
+            if (y > lastY) {
+                nav.classList.add('nav-hidden');    // scrolling down
+            } else {
+                nav.classList.remove('nav-hidden'); // scrolling up
+            }
+            lastY = y;
+        }
+    }, { passive: true });
+}
+
 document.addEventListener('DOMContentLoaded', loadNavbar);
